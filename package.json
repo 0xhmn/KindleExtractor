@@ -1,0 +1,27 @@
+{
+  "name": "kindle_extractor",
+  "version": "1.0.0",
+  "description": "Extracts the added words from Kindle Vocabulary Builder",
+  "main": "kindle.js",
+  "dependencies": {
+    "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yar00001/kindleExtractor.git"
+  },
+  "keywords": [
+    "Kindle",
+    "Anki"
+  ],
+  "author": "H H Yar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yar00001/kindleExtractor/issues"
+  },
+  "homepage": "https://github.com/yar00001/kindleExtractor#readme"
+}
