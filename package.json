@@ -4,11 +4,15 @@
   "description": "Extracts the added words from Kindle Vocabulary Builder",
   "main": "kindle.js",
   "dependencies": {
+    "express": "^4.16.3",
     "sqlite3": "^4.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js"
   },
   "repository": {
     "type": "git",
