@@ -5,14 +5,19 @@
   "main": "kindle.js",
   "dependencies": {
     "express": "^4.16.3",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon ./start.js"
+    "watch": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
