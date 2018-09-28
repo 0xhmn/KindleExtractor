@@ -4,13 +4,13 @@
   "description": "Extracts the added words from Kindle Vocabulary Builder",
   "main": "kindle.js",
   "dependencies": {
-    "express": "^4.16.3",
-    "sqlite3": "^4.0.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "sqlite3": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
