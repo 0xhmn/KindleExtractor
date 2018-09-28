@@ -15,14 +15,13 @@
     <h3 class="mt-5">Upload</h1>
       <p>Upload the <code>vocab.db</code> file</p>
 
-      <form action="upload" method="POST" enctype="multipart/form-data">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
         <label class="btn btn-outline-secondary btn-lg btn-block" for="file-selector">
-          <input id="file-selector" type="file" name="file" style="display:none;">
-          Upload
+          <input id="file-selector" type="file" name="dbfile" style="display:none;">
+          <i class="fas fa-cloud-upload-alt"></i> Choose File
         </label>
         <input type="submit" class="btn btn-outline-secondary" id="file-selector">
       </form>
-
 
   </main>
 
