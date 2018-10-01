@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var logger = require('./../logger/log');
+var logger = require('../logger/log');
 
 // Database
-var db = require('./../db/sqliteWrapper');
-var query = require('./../db/query')
+var db = require('../db/sqliteWrapper');
+var query = require('../db/query')
 
 // File Uploading Handler
 var multer = require('multer');
@@ -16,12 +16,12 @@ router.post('/', upload.single('dbfile'), function (req, res, next) {
     logger.info('[UPLOADING] Uploading file started.');
 
     var dbfile = req.file;
-
+    
     logger.info('[UPLOADING] Uploading file', dbfile);
 
     db.getConnection(dbfile.path)
         .then(
-            () => db.queryWordsByBookName(query.QUERY_READ_BOOK, "The Idiot"),
+            () => db.queryBookNames(),
         ).then(
             () => db.closeConnection(dbfile)
         );

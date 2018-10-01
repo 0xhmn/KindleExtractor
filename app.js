@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 var indexRouter = require('./routes/index');
+var getListRouter = require('./routes/get-list');
 var uploadRouter = require('./routes/upload');
 
 var app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routers
 app.use('/', indexRouter);
+app.use('/get-list', getListRouter);
 app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler

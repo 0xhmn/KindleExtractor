@@ -28,5 +28,10 @@ module.exports = {
                         where book = ?
                         GROUP BY
                         w.word
-                        ORDER BY timestamp ASC, book ASC`
+                        ORDER BY timestamp ASC, book ASC`,
+
+    QUERY_BOOK_NAMES :  `select
+                        b.title,
+                        b.authors
+                        from BOOK_INFO b` 
 }

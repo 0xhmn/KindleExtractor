@@ -34,7 +34,7 @@ function getConnection(dbFullName) {
  * Perform a Query against the Database.
  * @param {String} query 
  */
-function queryDatabase(query, bookName) {
+function queryWordsByBookName(query, bookName) {
     return new Promise((resolve, reject) => {
         databaseConnection.each(query, [bookName], (err, row) => {
             if (err) {
@@ -48,7 +48,21 @@ function queryDatabase(query, bookName) {
     });
 }
 
-function closeConnection(dbFullName) {
+function queryBookNames() {
+    return new Promise((resolve, reject) => {
+        databaseConnection.each(query.QUERY_BOOK_NAMES, [], (err, row) => {
+            if (err) {
+                logger.error("[ERROR] while performing the query.", err);
+                reject(err);
+            } else {
+                logger.info("[INFO] READ ROW:", row);
+                resolve(row);
+            }
+        })
+    });
+}
+
+function closeConnection() {
     return new Promise((resolve, reject) => {
         databaseConnection.close((err) => {
             if (err) {
@@ -61,15 +75,9 @@ function closeConnection(dbFullName) {
     });
 }
 
-// getConnection('sample.db')
-//     .then(
-//         () => queryDatabase(query.QUERY_READ_BOOK, "The Idiot"),
-//     ).then(
-//         () => closeConnection('sample.db')
-//     );
-
 module.exports = {
     getConnection,
-    queryDatabase,
+    queryWordsByBookName,
+    queryBookNames,
     closeConnection
 };
