@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-var queries = require('./util/query');
+var queries = require('./db/query');
 var dbHelper = require('./db/db-helper');
 
 // CONSTANTS
