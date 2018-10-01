@@ -1,15 +1,30 @@
 var express = require('express');
 var router = express.Router();
-// var kindle = require('./../kindle');
+var logger = require('./../logger/log');
+
+// Database
+var db = require('./../db/sqliteWrapper');
+var query = require('./../db/query')
+
+// File Uploading Handler
 var multer = require('multer');
-var upload = multer({dest: 'result/'})
+var upload = multer({dest: 'uploaded-files/'})
 
 /* POST upload handler. */
 router.post('/', upload.single('dbfile'), function (req, res, next) {
-    console.log("upload handler");
-    var dbfile = req.file;
-    // kindle.handleDbFile(dbfile);
 
+    logger.info('[UPLOADING] Uploading file started.');
+
+    var dbfile = req.file;
+    
+    logger.info('[UPLOADING] Uploading file', dbfile);
+
+    db.getConnection(dbfile.path)
+        .then(
+            () => db.queryDatabase(query.QUERY_READ_BOOK, "The Idiot"),
+        ).then(
+            () => db.closeConnection(dbfile)
+        );
 
     res.send("got POST to uplaod");
 });
