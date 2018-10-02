@@ -15,14 +15,24 @@
     <h3 class="mt-5">Upload</h1>
       <p>Upload the <code>vocab.db</code> file</p>
 
-      <form action="/get-list" method="POST" enctype="multipart/form-data">
-        <label class="btn btn-outline-secondary btn-lg btn-block" for="file-selector">
-          <input id="file-selector" type="file" accept=".db" name="dbfile" style="display:none;">
-          <i class="fas fa-cloud-upload-alt"></i> Choose File
-        </label>
-        <input type="submit" class="btn btn-outline-secondary" id="file-selector">
+      <form action="/get-list" method="POST" enctype="multipart/form-data" id="idFormUpload">
+        <div class="row">
+          <div class="col-9">
+            <label class="btn btn-outline-secondary btn-lg btn-block" for="file-selector">
+              <input id="file-selector" type="file" accept=".db" name="dbfile" style="display:none;">
+              <i class="fas fa-cloud-upload-alt"></i> Choose File
+            </label>
+          </div>
+
+          <div class="col-3">
+            <input type="submit" class="btn btn-outline-secondary btn-lg" id="idUpload">
+          </div>
+        </div>
       </form>
-    
+
+      <!-- Make an Ajax Call to get Book Inforamtion -->
+      <script src="./ajax/getBooks.js"></script>
+
   </main>
 
   <%- include('template/footer'); %>
