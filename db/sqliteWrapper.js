@@ -31,6 +31,23 @@ function getConnection(dbFullName) {
 }
 
 /**
+ * Close the database connection.
+ */
+function closeConnection() {
+    return new Promise((resolve, reject) => {
+        databaseConnection.close((err) => {
+            if (err) {
+                logger.error("[ERROR] while closing the database.", err);
+                reject(err);
+            } else {
+                logger.info("DB Closed Successfully!");
+                resolve(true);
+            }
+        })
+    });
+}
+
+/**
  * Perform a Query against the Database.
  * @param {String} query 
  */
@@ -50,26 +67,13 @@ function queryWordsByBookName(query, bookName) {
 
 function queryBookNames() {
     return new Promise((resolve, reject) => {
-        databaseConnection.each(query.QUERY_BOOK_NAMES, [], (err, row) => {
+        databaseConnection.all(query.QUERY_BOOK_NAMES, [], (err, rows) => {
             if (err) {
                 logger.error("[ERROR] while performing the query.", err);
                 reject(err);
             } else {
-                logger.info("[INFO] READ ROW:", row);
-                resolve(row);
-            }
-        })
-    });
-}
-
-function closeConnection() {
-    return new Promise((resolve, reject) => {
-        databaseConnection.close((err) => {
-            if (err) {
-                logger.error("[ERROR] while closing the database.", err);
-                reject(err);
-            } else {
-                resolve(true);
+                logger.info("[INFO] READ ALL ROWS:", rows);
+                resolve(rows);
             }
         })
     });
