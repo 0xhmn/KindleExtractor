@@ -4,36 +4,63 @@
 <%- include('template/header'); %>
 
 <body>
-  <main role="main" class="container">
-    <h1 class="mt-5">
-      <%=title %>
-    </h1>
-    <p class="lead">Simple Kindle Vocabulary DB Extractor.</p>
 
-    <hr>
 
-    <h3 class="mt-5">Upload</h1>
-      <p>Upload the <code>vocab.db</code> file</p>
+  <div class="container">
 
-      <form action="/get-list" method="POST" enctype="multipart/form-data" id="idFormUpload">
-        <div class="row">
-          <div class="col-9">
-            <label class="btn btn-outline-secondary btn-lg btn-block" for="file-selector">
-              <input id="file-selector" type="file" accept=".db" name="dbfile" style="display:none;">
-              <i class="fas fa-cloud-upload-alt"></i> Choose File
-            </label>
+    <div class="row">
+
+      <div class="col-12 lead">
+        <h1>
+          <%=title %>
+        </h1>
+        <p>Simple Kindle Vocabulary DB Extractor.</p>
+      </div>
+
+      <div class="col-12">
+        <h3>Upload</h3>
+        <p>Upload the <code>vocab.db</code> file</p>
+
+        <form enctype="multipart/form-data" id="idFormUpload">
+          <div class="row">
+            <div class="col-9">
+              <label class="btn btn-outline-secondary btn-lg btn-block" for="file-selector">
+                <input id="file-selector" type="file" accept=".db" name="dbfile" style="display:none;">
+                <i class="fas fa-cloud-upload-alt"></i> Choose File
+              </label>
+            </div>
+
+            <div class="col-3">
+              <input type="submit" class="btn btn-outline-secondary btn-lg" id="idUpload">
+            </div>
           </div>
+        </form>
+      </div>
 
-          <div class="col-3">
-            <input type="submit" class="btn btn-outline-secondary btn-lg" id="idUpload">
-          </div>
-        </div>
-      </form>
+      <!-- Showing Book Details -->
+      <div class="col-12 d-none" id="bookDetail">
+        <h3>List of Books</h3>
+        <p>Here's the list of all books availbe in the file you have uploaded.</p>
 
-      <!-- Make an Ajax Call to get Book Inforamtion -->
-      <script src="./ajax/getBooks.js"></script>
+        <table class="table table-striped table-sm" id="bookTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- to be filled by js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  </main>
+    <!-- Make an Ajax Call to get Book Inforamtion -->
+    <script src="./ajax/getBooks.js"></script>
+
+  </div>
 
   <%- include('template/footer'); %>
 </body>

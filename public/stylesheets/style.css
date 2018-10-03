@@ -35,3 +35,12 @@ body {
   max-width: 680px;
   padding: 0 15px;
 }
+
+.col-12 {
+  padding-top: 20px;
+}
+
+.lead {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
