@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon ./bin/www"
+    "watch": "nodemon ./bin/www",
+    "debugwatch": "DEBUG=express:* nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
