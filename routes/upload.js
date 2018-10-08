@@ -21,7 +21,7 @@ router.post('/', upload.single('dbfile'), function (req, res, next) {
 
     db.getConnection(dbfile.path)
         .then(
-            () => db.queryWordsByBookName(query.QUERY_READ_BOOK, "The Idiot"),
+            () => db.queryWordsByBookName(query.QUERY_BY_BOOK, "The Idiot"),
         ).then(
             () => db.closeConnection(dbfile)
         );

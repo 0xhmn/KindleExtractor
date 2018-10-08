@@ -15,9 +15,7 @@ $("form#idFormUpload").submit(function (e) {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log('Submission was successful.');
-            console.log(data);
-
+            console.log('Submission was successful', data);
             // set data to table
             renderBookName(data);
         },
@@ -30,18 +28,22 @@ $("form#idFormUpload").submit(function (e) {
 
 function renderBookName(data) {
     var bookSection = $('#bookDetail');
-    var tbl = $('#bookTable');
-    if (data && tbl) {
+    var tblElement = $('#bookTable');
+    var dbfileInfoPath = encodeURIComponent(data.dbfile.path);
+    if (data && tblElement) {
         // show table
         bookSection.removeClass('d-none');
         let count = 1;
-        data.forEach(function(item) {
-            var row = '<tr>'
+        data.allbooks.forEach(function(item) {
+            var row = '<tr onclick="window.location=\'./result?'
+            + 'dbfile=' + dbfileInfoPath
+            + '&&name=' + item.title
+            + '\';\">'
             + '<th scope="row">' + count + '</th>'
             + '<td>' + item.title + '</td>'
             + '<td>' + item.authors + '</td>';
-
-            tbl.append(row);
+            
+            tblElement.append(row);
             count++;
         })
     }

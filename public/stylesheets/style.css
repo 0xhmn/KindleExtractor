@@ -44,3 +44,8 @@ body {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+tr:hover { 
+  cursor: pointer;
+  background-color: #e5efff;
+}

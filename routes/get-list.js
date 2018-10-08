@@ -12,13 +12,13 @@ var upload = multer({
 })
 
 const asyncMiddleware = fn =>
-  (req, res, next) => {
-    Promise.resolve(fn(req, res, next))
-      .catch(next);
-  };
+    (req, res, next) => {
+        Promise.resolve(fn(req, res, next))
+            .catch(next);
+    };
 
 /* POST upload handler. */
-router.post('/', upload.single('dbfile'), asyncMiddleware(async (req, res, next) => {
+router.post('/', upload.single('dbfile'), asyncMiddleware(async (req, res) => {
     logger.info('[BOOK-TITLE] Uploading file started.');
 
     var dbfile = req.file;
@@ -28,14 +28,19 @@ router.post('/', upload.single('dbfile'), asyncMiddleware(async (req, res, next)
     // Open the DB Connection
     await openDBConnection(dbfile);
     // Retrieving the Data
-    const allbooks = await waitForBooks();
+    var allbooks = await waitForBooks();
 
-    logger.info("[BOOK-TITLE] Json Result: ", allbooks);
+    // add the dbFile to json response
+    var result = {};
+    result.dbfile = dbfile;
+    result.allbooks = allbooks;
+
+    logger.info("[BOOK-TITLE] Json Result: ", result);
 
     // close the connection
     db.closeConnection();
 
-    res.json(allbooks);
+    res.json(result);
 }));
 
 async function openDBConnection(dbfile) {

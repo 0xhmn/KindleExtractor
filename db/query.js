@@ -14,7 +14,7 @@ module.exports = {
                         w.word
                         ORDER BY timestamp ASC, book ASC`,
 
-    QUERY_READ_BOOK :  `select
+    QUERY_BY_BOOK :     `select
                         w.word,
                         l.usage as usage
                         ,w.timestamp as timestamp

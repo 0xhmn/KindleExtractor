@@ -2,10 +2,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var logger = require('./logger/log');
 
 var indexRouter = require('./routes/index');
 var getListRouter = require('./routes/get-list');
 var uploadRouter = require('./routes/upload');
+var resultReouter = require('./routes/result');
 
 var app = express();
 
@@ -23,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use('/', indexRouter);
 app.use('/get-list', getListRouter);
 app.use('/upload', uploadRouter);
+app.use('/result', resultReouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -33,6 +36,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  logger.error(err.message);
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
