@@ -51,9 +51,9 @@ function closeConnection() {
  * Perform a Query against the Database.
  * @param {String} query 
  */
-function queryWordsByBookName(query, bookName) {
+function queryWordsByBookName(bookName) {
     return new Promise((resolve, reject) => {
-        databaseConnection.each(query, [bookName], (err, row) => {
+        databaseConnection.all(query.QUERY_WORDS_BY_BOOK, [bookName], (err, row) => {
             if (err) {
                 logger.error("[ERROR] while performing the query.", err);
                 reject(err);
