@@ -39,6 +39,7 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
 
   res.render('result', {
     title: 'Results',
+    'book' : bookName,
     'words': allWords
   });
 }));
