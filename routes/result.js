@@ -65,11 +65,35 @@ async function lookupDefinitions(wordDetails) {
   for (const wd of wordDetails) {
     let word = wd.word;
     var defRes = await dic.lookupWordPromisify(word);
-    dictResult[word] = prettyHtml(defRes.data);
+    dictResult[word] = prettyHtml(refineResults(defRes.data));
     console.log("got the definition!", defRes.data);
   }
 
   return dictResult;
+}
+
+function refineResults(rawInput) {
+  var resultArray = rawInput.results;
+  var arr = [];
+  for (const item of resultArray) {
+    var res = {};
+    if (item.datasets) {
+      res.datasets = item.datasets;
+    }
+    if (item.part_of_speech) {
+      res.part_of_speech = item.part_of_speech;
+    }
+    if (item.pronunciations) {
+      res.pronunciations = item.pronunciations;
+    }
+    if (item.senses) {
+      res.senses = item.senses;
+    }
+
+    arr.push(res);
+  }
+
+  return arr;
 }
 
 module.exports = router;
