@@ -33,18 +33,16 @@ function renderBookName(data) {
     if (data && tblElement) {
         // show table
         bookSection.removeClass('d-none');
-        let count = 1;
         data.allbooks.forEach(function(item) {
-            var row = '<tr onclick="window.location=\'./result?'
+            var row = '<tr id="clickableRow"' 
+            + ' onclick="window.location=\'./result?'
             + 'dbfile=' + dbfileInfoPath
             + '&&name=' + item.title
             + '\';\">'
-            + '<th scope="row">' + count + '</th>'
             + '<td>' + item.title + '</td>'
             + '<td>' + item.authors + '</td>';
             
             tblElement.append(row);
-            count++;
         })
     }
 }

@@ -8,7 +8,7 @@ function createWordTable(words) {
     let count = 1;
 
     words.forEach(item => {
-        console.log(item);
+        
         var row = '<tr>'
         + '<th scope="row">' + count + '</th>'
         + '<td>' + item.word + '</td>'
