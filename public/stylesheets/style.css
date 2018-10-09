@@ -45,7 +45,7 @@ body {
   padding-bottom: 50px;
 }
 
-tr:hover { 
+#bookTable tr:hover { 
   cursor: pointer;
   background-color: #e5efff;
 }

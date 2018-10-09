@@ -17,9 +17,10 @@
 
       <!-- Showing Word Details -->
       <div class="col-12" id="wordDetail">
-        <h3>List of All Words for <code><%=book %></code>:</h3>
-        <hr>
-        <table class="table table-bordered table-sm" id="bookTable">
+        <h3>List of All Words for <code>
+            <%=book %></code>:</h3>
+        <br>
+        <table class="table table-bordered table-sm" id="wordTable">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -34,17 +35,14 @@
       </div>
     </div>
 
-    <!-- Make an Ajax Call to get Book Inforamtion -->
+    <!-- Creating the a Table of Words -->
+    <script src="./js/showWords.js" type="text/javascript"></script>
     <script>
-      // var title = '';
-      //
-      // <%=title %>';
-      // var wordList =
-      //
-      // <%- JSON.stringify(words) %>
-      // console.log(title);
-      // console.log(wordList);
-      </script>
+      var wordList = <%- JSON.stringify(words) %>;
+      console.log("creating the table for " + wordList.length + " words!!");
+      /* reading from showWords.js */
+      createWordTable(wordList);
+    </script>
   </div>
 
   <%- include('template/footer'); %>
