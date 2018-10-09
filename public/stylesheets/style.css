@@ -48,3 +48,7 @@ body {
 .table-hover {
   cursor: pointer;
 }
+
+#definition a:link, a:visited, a {
+  color: #f96a2c;
+}

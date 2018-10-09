@@ -41,7 +41,7 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
   console.log("done waiting for dictionary: ", allDefinitions);
 
   res.render('result', {
-    title: 'Results',
+    'title': 'Results',
     'book' : bookName,
     'words': allWordsDetails,
     'definitionDict': allDefinitions

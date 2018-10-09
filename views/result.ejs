@@ -26,6 +26,7 @@
               <th scope="col">#</th>
               <th scope="col">Word</th>
               <th scope="col">Usage</th>
+              <th scope="col">Definition</th>
             </tr>
           </thead>
           <tbody>
@@ -39,11 +40,11 @@
     <script src="./js/showWords.js" type="text/javascript"></script>
     <script>
       var wordList = <%- JSON.stringify(words) %>;
+      var defMap = <%- JSON.stringify(definitionDict) %>;
       console.log("creating the table for " + wordList.length + " words!!");
+      console.log("creating the table for " + Object.keys(defMap).length + " definitions!!", defMap);
       /* reading from showWords.js */
-      createWordTable(wordList);
-      var defList = <%- JSON.stringify(definitionDict) %>;
-      console.log('defList:', defList)
+      createWordTable(wordList, defMap);
     </script>
   </div>
 
