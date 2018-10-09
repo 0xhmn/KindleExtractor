@@ -32,7 +32,7 @@ body {
 
 .container {
   width: auto;
-  max-width: 680px;
+  max-width: 800px;
   padding: 0 15px;
 }
 
@@ -51,4 +51,9 @@ body {
 
 #definition a:link, a:visited, a {
   color: #f96a2c;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
 }
