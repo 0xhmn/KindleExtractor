@@ -77,17 +77,34 @@ function refineResults(rawInput) {
   var arr = [];
   for (const item of resultArray) {
     var res = {};
-    if (item.datasets) {
-      res.datasets = item.datasets;
-    }
+
     if (item.part_of_speech) {
       res.part_of_speech = item.part_of_speech;
     }
+
     if (item.pronunciations) {
-      res.pronunciations = item.pronunciations;
+      var pronArray = item.pronunciations;
+      for (const p of pronArray) {
+        if (p.ipa) {
+          res.pronunciations = p.ipa;
+        }
+      }
     }
+
     if (item.senses) {
-      res.senses = item.senses;
+      var senses = item.senses;
+      for (const s of senses) {
+        if (s.definition) {
+          res.definition = s.definition;
+        }
+        if (s.examples) {
+          for (e of s.examples) {
+            if (e.text) {
+              res.examples = e.text;
+            }
+          }          
+        }
+      }
     }
 
     arr.push(res);
