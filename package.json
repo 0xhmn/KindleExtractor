@@ -4,6 +4,7 @@
   "description": "Extracts the added words from Kindle Vocabulary Builder",
   "main": "./bin/www",
   "dependencies": {
+    "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "^2.6.1",

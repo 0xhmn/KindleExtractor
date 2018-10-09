@@ -42,6 +42,8 @@
       console.log("creating the table for " + wordList.length + " words!!");
       /* reading from showWords.js */
       createWordTable(wordList);
+      var defList = <%- JSON.stringify(definitionDict) %>;
+      console.log('defList:', defList)
     </script>
   </div>
 

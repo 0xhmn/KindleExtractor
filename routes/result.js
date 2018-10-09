@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var logger = require('../logger/log');
+var dic = require('./../dic/dictionary');
 
 // Database
 var dbhandler = require('../db/sqliteWrapper');
@@ -33,14 +34,17 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
   // Open the Uploaded DB Connection
   await openDBConnection(dbPath);
   // Retrieving the Data
-  var allWords = await waitForWords(bookName);
-
-  console.log("done waiting for words: ", allWords.length);
+  var allWordsDetails = await waitForWords(bookName);
+  console.log("done waiting for words: ", allWordsDetails.length);
+  // Retrieving all the definitions
+  var allDefinitions = await lookupDefinitions(allWordsDetails);
+  console.log("done waiting for dictionary: ", allDefinitions);
 
   res.render('result', {
     title: 'Results',
     'book' : bookName,
-    'words': allWords
+    'words': allWordsDetails,
+    'definitionDict': allDefinitions
   });
 }));
 
@@ -52,6 +56,19 @@ async function waitForWords(bookName) {
   var result = await dbhandler.queryWordsByBookName(bookName);
   console.log("after wait result", result);
   return result;
+}
+
+async function lookupDefinitions(wordDetails) {
+  var dictResult = {};
+
+  for (const wd of wordDetails) {
+    let word = wd.word;
+    var defRes = await dic.lookupWordPromisify(word);
+    dictResult[word] = defRes.data;
+    console.log("got the definition!", defRes.data);
+  }
+
+  return dictResult;
 }
 
 module.exports = router;
