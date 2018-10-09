@@ -1,6 +1,6 @@
 
 function createWordTable(words, definitions) {
-    var tblElement = $('#wordTable');
+    var tblElement = $(`#wordTable`);
     let count = 1;
 
     words.forEach(item => {
@@ -9,20 +9,20 @@ function createWordTable(words, definitions) {
         let def = definitions[word];
 
         var row = 
-        '<tr>'
-        + '<th scope="row">' + count + '</th>'
-        + '<td>' + word + '</td>'
-        + '<td>' + usage + '</td>'
-        + '<td><a href="#" id="definition">Show</a></td>'
-        + '</tr>'
+        `<tr>`
+        + `<th scope="row"> ${count} </th>`
+        + `<td> ${word} </td>`
+        + `<td> ${usage} </td>`
+        + `<td><a href="#" id="show_${count}">Show</a></td>`
+        + `</tr>`
         
-        + '<tr>'
-        + '<td colspan="4">'
-        + '<div>'
+        + `<tr>`
+        + `<td colspan="4">`
+        + `<div id="def_${count}" style="display: none;">`
         + JSON.stringify(def)
-        + '</div>'
-        + '</td>'
-        + '</tr>';
+        + `</div>`
+        + `</td>`
+        + `</tr>`;
 
         tblElement.append(row);
         count++;

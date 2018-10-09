@@ -45,6 +45,12 @@
       console.log("creating the table for " + Object.keys(defMap).length + " definitions!!", defMap);
       /* reading from showWords.js */
       createWordTable(wordList, defMap);
+
+      $("a[id^=show_]").click(function (event) {
+        console.log("show is clicked!");
+        $("#def_" + $(this).attr(`id`).substr(5)).slideToggle("slow");
+        event.preventDefault();
+      })
     </script>
   </div>
 
