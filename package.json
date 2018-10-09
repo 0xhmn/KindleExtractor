@@ -10,6 +10,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "http-errors": "~1.6.2",
+    "json-pretty-html": "^1.1.2",
     "multer": "^1.4.0",
     "sqlite3": "^4.0.2",
     "winston": "^3.1.0"

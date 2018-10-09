@@ -7,19 +7,18 @@ function createWordTable(words, definitions) {
         let word = item.word;
         let usage = item.usage;
         let def = definitions[word];
-
         var row = 
         `<tr>`
-        + `<th scope="row"> ${count} </th>`
+        + `<td scope="row"> ${count} </td>`
         + `<td> ${word} </td>`
         + `<td> ${usage} </td>`
         + `<td><a href="#" id="show_${count}">Show</a></td>`
         + `</tr>`
         
         + `<tr>`
-        + `<td colspan="4">`
-        + `<div id="def_${count}" style="display: none;">`
-        + JSON.stringify(def)
+        + `<td colspan="4" style="padding: 0rem;">`
+        + `<div id="def_${count}" class="definition" style="display: none;">`
+        + def
         + `</div>`
         + `</td>`
         + `</tr>`;

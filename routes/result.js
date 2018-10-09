@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var logger = require('../logger/log');
 var dic = require('./../dic/dictionary');
+var prettyHtml = require('json-pretty-html').default;
 
 // Database
 var dbhandler = require('../db/sqliteWrapper');
@@ -64,7 +65,7 @@ async function lookupDefinitions(wordDetails) {
   for (const wd of wordDetails) {
     let word = wd.word;
     var defRes = await dic.lookupWordPromisify(word);
-    dictResult[word] = defRes.data;
+    dictResult[word] = prettyHtml(defRes.data);
     console.log("got the definition!", defRes.data);
   }
 
