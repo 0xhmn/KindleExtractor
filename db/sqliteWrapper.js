@@ -65,6 +65,20 @@ function queryWordsByBookName(bookName) {
     });
 }
 
+function queryWordsByBookNameAndTime(bookName, startTime, endTime) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.all(query.QUERY_WORDS_BY_TIME, [bookName, startTime, endTime], (err, row) => {
+            if (err) {
+                logger.error("[ERROR] while performing the query.", err);
+                reject(err);
+            } else {
+                logger.info("[INFO] READ ROW:", row);
+                resolve(row);
+            }
+        })
+    });
+}
+
 function queryBookNames() {
     return new Promise((resolve, reject) => {
         databaseConnection.all(query.QUERY_BOOK_DETAIL, [], (err, rows) => {
@@ -82,6 +96,7 @@ function queryBookNames() {
 module.exports = {
     getConnection,
     queryWordsByBookName,
+    queryWordsByBookNameAndTime,
     queryBookNames,
     closeConnection
 };

@@ -20,6 +20,8 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
 
   let bookName = req.query.name;
   let dbPath = req.query.dbfile;
+  let startTime = req.query.startTime;
+  let endTime = req.query.endTime;
 
   console.log("bookname and db file path", bookName, dbPath);
 
@@ -35,7 +37,14 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
   // Open the Uploaded DB Connection
   await openDBConnection(dbPath);
   // Retrieving the Data
-  var allWordsDetails = await waitForWords(bookName);
+  var allWordsDetails
+  if (startTime && endTime) {
+    console.log(`doing query from ${startTime} - ${endTime}`);
+    allWordsDetails = await waitForWordsByTime(bookName, startTime, endTime);
+  } else {
+    console.log(`doing query from without any time being set`);
+    await waitForWordsByName(bookName);
+  }
   console.log("done waiting for words: ", allWordsDetails.length);
   // Retrieving all the definitions
   var allDefinitions = await lookupDefinitions(allWordsDetails);
@@ -53,8 +62,14 @@ async function openDBConnection(dbPath) {
   await dbhandler.getConnection(dbPath);
 }
 
-async function waitForWords(bookName) {
+async function waitForWordsByName(bookName) {
   var result = await dbhandler.queryWordsByBookName(bookName);
+  console.log("after wait result", result);
+  return result;
+}
+
+async function waitForWordsByTime(bookName, startTime, endTime) {
+  var result = await dbhandler.queryWordsByBookNameAndTime(bookName, startTime, endTime);
   console.log("after wait result", result);
   return result;
 }

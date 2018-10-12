@@ -70,7 +70,9 @@ function generateDetailForItem(item, dbfileInfoPath) {
 
     var resultPageLink = `./result?`
     + `dbfile=${dbfileInfoPath}`
-    + `&&name=${title}`;
+    + `&&name=${title}`
+    + `&&startTime=${firstRecordDate}`
+    + `&&endTime=${lastRecordDate}`;
 
     var res = 
     `<ul class="list-group">
