@@ -12,7 +12,7 @@ function createWordTable(words, definitions) {
         + `<td scope="row"> ${count} </td>`
         + `<td> ${word} </td>`
         + `<td> ${usage} </td>`
-        + `<td><a href="#" id="show_${count}">Show</a></td>`
+        + `<td><a href="#" id="show_${count}" class="showlink">Show</a></td>`
         + `</tr>`
         
         + `<tr>`
