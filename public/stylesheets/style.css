@@ -45,9 +45,9 @@ a.githubfooter {
   padding-bottom: 50px;
 }
 
-.table-hover {
+/* .table-hover {
   cursor: pointer;
-}
+} */
 
 a.showlink {
   color: #f96a2c;
@@ -64,4 +64,11 @@ table {
   font-size: 12px;
   line-height: 100%;
   background: #ececec;
+}
+
+.detailRow {
+  padding: 1em;
+  font-size: 12px;
+  line-height: 100%;
+  background: #fff9f6;
 }
