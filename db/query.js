@@ -38,8 +38,12 @@ module.exports = {
     QUERY_BOOK_DETAIL: `select
                         b.title,
                         b.authors,
-                        MIN(w.timestamp) mintime,
-                        MAX(w.timestamp) maxtime,
+                        MIN(w.timestamp) as minTime,
+                        MAX(w.timestamp) as maxTime,
+                        
+                        strftime('%d - %m  - %Y ', datetime(MIN(w.timestamp) /1000, 'unixepoch')) formattedMinTime,
+                        strftime('%d - %m  - %Y ', datetime(MAX(w.timestamp) /1000, 'unixepoch')) formattedMaxTime,
+                        
                         count(*) as allwords
                         FROM
                         WORDS w
@@ -49,7 +53,7 @@ module.exports = {
                         on b.guid=l.book_key
                         GROUP BY
                         b.title
-                        ORDER BY w.timestamp ASC`,
+                        ORDER BY minTime ASC`,
 
     QUERY_TIME_PERIOD: ``
 }

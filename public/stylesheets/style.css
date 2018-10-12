@@ -66,8 +66,12 @@ table {
   background: #ececec;
 }
 
-.detailRow {
+.detailDiv {
   padding: 1em;
   font-size: 12px;
   line-height: 100%;
+}
+
+.detailDiv:hover {
+  background: #ffffff;
 }

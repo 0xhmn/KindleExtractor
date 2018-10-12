@@ -37,9 +37,7 @@ function renderBookName(data) {
 
         data.allbooks.forEach(function(item) {
 
-            var detail = generateDetailForItem(item);
-
-            console.log("book detail", detail);
+            var detail = generateDetailForItem(item, dbfileInfoPath);
 
             var row = `<tr>`
             + `<td> ${item.title} </td>`
@@ -49,9 +47,9 @@ function renderBookName(data) {
             + `</td>`
             + `</tr>`
         
-            + `<tr>`
+            + `<tr class="detailRow">`
             + `<td colspan="3" style="padding: 0rem;">`
-            + `<div id="def_${count}" class="detailRow" style="display: none;">`
+            + `<div id="def_${count}" class="detailDiv" style="display: none;">`
             + detail
             + `</div>`
             + `</td>`
@@ -66,8 +64,8 @@ function renderBookName(data) {
 
 function generateDetailForItem(item, dbfileInfoPath) {
     var count = item.allwords;
-    var firstRecordDate = item.mintime;
-    var lastRecordDate = item.maxtime;
+    var firstRecordDate = item.formattedMinTime;
+    var lastRecordDate = item.formattedMaxTime;
     var title = item.title;
 
     var resultPageLink = `./result?`
