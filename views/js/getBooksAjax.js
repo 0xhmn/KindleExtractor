@@ -36,9 +36,10 @@ function renderBookName(data) {
         let count = 1;
 
         data.allbooks.forEach(function(item) {
-            var resultLink = `./result?`
-            + `dbfile=${dbfileInfoPath}`
-            + `&&name=${item.title}`;
+
+            var detail = generateDetailForItem(item);
+
+            console.log("book detail", detail);
 
             var row = `<tr>`
             + `<td> ${item.title} </td>`
@@ -51,7 +52,7 @@ function renderBookName(data) {
             + `<tr>`
             + `<td colspan="3" style="padding: 0rem;">`
             + `<div id="def_${count}" class="detailRow" style="display: none;">`
-            + `<a href="${resultLink}">words</a>`
+            + detail
             + `</div>`
             + `</td>`
             + `</tr>`;
@@ -61,6 +62,27 @@ function renderBookName(data) {
         })
         loadJquery();
     }
+}
+
+function generateDetailForItem(item, dbfileInfoPath) {
+    var count = item.allwords;
+    var firstRecordDate = item.mintime;
+    var lastRecordDate = item.maxtime;
+    var title = item.title;
+
+    var resultPageLink = `./result?`
+    + `dbfile=${dbfileInfoPath}`
+    + `&&name=${title}`;
+
+    var res = 
+    `<ul class="list-group">
+        <li class="list-group-item">Total Words: ${count}</li>
+        <li class="list-group-item">First Word Added: ${firstRecordDate}</li>
+        <li class="list-group-item">Last Word Added: ${lastRecordDate}</li>
+        <a class="list-group-item list-group-item-info" href="${resultPageLink}">words</a>
+    </ul>`;
+
+    return res;
 }
 
 function loadJquery() {

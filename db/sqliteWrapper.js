@@ -67,7 +67,7 @@ function queryWordsByBookName(bookName) {
 
 function queryBookNames() {
     return new Promise((resolve, reject) => {
-        databaseConnection.all(query.QUERY_BOOK_NAMES, [], (err, rows) => {
+        databaseConnection.all(query.QUERY_BOOK_DETAIL, [], (err, rows) => {
             if (err) {
                 logger.error("[ERROR] while performing the query.", err);
                 reject(err);
