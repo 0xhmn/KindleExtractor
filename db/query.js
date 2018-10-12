@@ -55,5 +55,21 @@ module.exports = {
                         b.title
                         ORDER BY minTime ASC`,
 
-    QUERY_TIME_PERIOD: ``
+    QUERY_TIME_PERIOD: `select
+                        w.word,
+                        l.usage as usage,
+                        b.title as book,
+                        strftime('%d - %m  - %Y ', datetime(w.timestamp /1000, 'unixepoch')) formattedTime
+                        FROM
+                        WORDS w
+                        LEFT JOIN LOOKUPS l
+                        on l.word_key=w.id
+                        LEFT JOIN BOOK_INFO b
+                        on b.guid=l.book_key
+                        where book = ?
+                        and
+                        formattedTime between ? and ?
+                        GROUP BY
+                        w.word
+                        ORDER BY formattedTime ASC, book ASC`
 }
