@@ -41,8 +41,8 @@ module.exports = {
                         MIN(w.timestamp) as minTime,
                         MAX(w.timestamp) as maxTime,
                         
-                        strftime('%d-%m-%Y', datetime(MIN(w.timestamp) /1000, 'unixepoch')) formattedMinTime,
-                        strftime('%d-%m-%Y', datetime(MAX(w.timestamp) /1000, 'unixepoch')) formattedMaxTime,
+                        strftime('%m/%d/%Y', datetime(MIN(w.timestamp) /1000, 'unixepoch')) formattedMinTime,
+                        strftime('%m/%d/%Y', datetime(MAX(w.timestamp) /1000, 'unixepoch')) formattedMaxTime,
                         
                         count(*) as allwords
                         FROM
@@ -59,7 +59,7 @@ module.exports = {
                         w.word,
                         l.usage as usage,
                         b.title as book,
-                        strftime('%d-%m-%Y', datetime(w.timestamp /1000, 'unixepoch')) formattedTime
+                        strftime('%m/%d/%Y', datetime(w.timestamp /1000, 'unixepoch')) formattedTime
                         FROM
                         WORDS w
                         LEFT JOIN LOOKUPS l
