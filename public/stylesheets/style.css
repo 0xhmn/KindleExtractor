@@ -75,3 +75,11 @@ table {
 .detailDiv:hover {
   background: #ffffff;
 }
+
+.navbarClass {
+  margin-top: 30px;
+}
+
+#wordDetail {
+  padding-bottom: 30px;
+}

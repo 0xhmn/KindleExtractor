@@ -6,7 +6,7 @@ var logger = require('./../logger/log');
 router.get('/', function(req, res, next) {
   logger.info("Index.js get request");
 
-  res.render('index', { title: 'K. E.' });
+  res.render('index', { title: 'Simple Kindle Extractor' });
 });
 
 module.exports = router;
