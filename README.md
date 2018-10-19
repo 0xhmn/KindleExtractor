@@ -10,5 +10,5 @@
 4. Choose the file from the UI and Submit.
 
 ### Screenshot
-<img src="./readme_img/home.png" alt="Home Page" style="width:600px;"/>
-<img src="./readme_img/results.png" alt="Home Page" style="width:600px;"/>
+<img src="./readme_img/home.png" alt="Home Page" style="width:500px;"/>
+<img src="./readme_img/results.png" alt="Home Page" style="width:500px;"/>
