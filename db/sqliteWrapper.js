@@ -55,7 +55,7 @@ function queryWordsByBookName(bookName) {
     return new Promise((resolve, reject) => {
         databaseConnection.all(query.QUERY_WORDS_BY_BOOK, [bookName], (err, row) => {
             if (err) {
-                logger.error("[ERROR] while performing the query.", err);
+                logger.error("[ERROR] while performing the query." + query.QUERY_WORDS_BY_BOOK, err);
                 reject(err);
             } else {
                 logger.info("[INFO] READ ROW:", row);
@@ -69,7 +69,7 @@ function queryWordsByBookNameAndTime(bookName, startTime, endTime) {
     return new Promise((resolve, reject) => {
         databaseConnection.all(query.QUERY_WORDS_BY_TIME, [bookName, startTime, endTime], (err, row) => {
             if (err) {
-                logger.error("[ERROR] while performing the query.", err);
+                logger.error("[ERROR] while performing the query." + query.QUERY_WORDS_BY_TIME, err);
                 reject(err);
             } else {
                 logger.info("[INFO] READ ROW:", row);
@@ -83,7 +83,7 @@ function queryBookNames() {
     return new Promise((resolve, reject) => {
         databaseConnection.all(query.QUERY_BOOK_DETAIL, [], (err, rows) => {
             if (err) {
-                logger.error("[ERROR] while performing the query.", err);
+                logger.error("[ERROR] while performing the query." + query.QUERY_BOOK_DETAIL , err);
                 reject(err);
             } else {
                 logger.info("[INFO] READ ALL ROWS:", rows);
